@@ -4,15 +4,21 @@ import ViewStore from './stores/ViewStore';
 import TodoApp from './components/todoApp.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DeltaStore from '../src/stores/DeltaStore';
+import MoneyStore from '../src/stores/MoneyStore';
+import MoneyApp from '../src/components/moneyApp.js';
 
 const initialState = window.initialState || {};
 
-var todoStore = TodoStore.fromJS(initialState.todos || []);
-var viewStore = new ViewStore();
+const moneyStore = new MoneyStore();
+const deltaStore = new DeltaStore();
 
-todoStore.subscribeServerToStore();
+deltaStore.subscribeLocalStorageToStore();
+moneyStore.subscribeToDeltaStore(deltaStore);
 
 ReactDOM.render(
-  <TodoApp todoStore={todoStore} viewStore={viewStore}/>,
-  document.getElementById('todoapp')
+  <div>
+    <MoneyApp moneyStore={moneyStore} deltaStore={deltaStore} />
+  </div>,
+  document.getElementById('money-game')
 );

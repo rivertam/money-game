@@ -2,7 +2,6 @@ import {observable, computed, reaction} from 'mobx';
 import TodoModel from '../models/TodoModel'
 import * as Utils from '../utils';
 
-
 export default class TodoStore {
   @observable todos = [];
 

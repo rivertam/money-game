@@ -17,7 +17,7 @@ export default class TodoApp extends React.Component {
       <div>
         <DevTool />
         <header className="header">
-          <h1>todos</h1>
+          <h1>todo</h1>
           <TodoEntry todoStore={todoStore} />
         </header>
         <TodoOverview todoStore={todoStore} viewStore={viewStore} />
